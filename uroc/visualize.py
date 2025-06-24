@@ -7,6 +7,7 @@ from nav_msgs.msg import Path
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
+import sys
 
 def ned_to_flu_xyz(xyz_enu):
     # ENU→FLU conversion if needed; here identity
@@ -99,8 +100,15 @@ class VisualizerNode(Node):
         # Optional: markers or additional TFs
 
 def main(args=None):
+    print("UROC Visualize Node Initiated. Press CTRL-C to exit.")
     rclpy.init(args=args)
     node = VisualizerNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        print("Shutting Down UROC Visualize Node Setup...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
