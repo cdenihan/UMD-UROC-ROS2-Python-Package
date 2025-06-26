@@ -97,17 +97,16 @@ class VisualizerNode(Node):
         self.path.header.stamp = stamp
         self.path_pub.publish(self.path)
 
-        # Optional: markers or additional TFs
 
 def main(args=None):
-    print("UROC Visualize Node Initiated. Press CTRL-C to exit.")
+    print("UROC Foxglove 3D Visualization Node Initiated. Press CTRL-C to exit.")
     rclpy.init(args=args)
     node = VisualizerNode()
 
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        print("Shutting Down UROC Visualize Node Setup...")
+        print("Shutting Down UROC Foxglove 3D Visualization Node")
     finally:
         node.destroy_node()
         if rclpy.ok():

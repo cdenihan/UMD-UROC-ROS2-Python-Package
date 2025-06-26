@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'uroc'
+package_name = 'py_uroc'
 
 setup(
     name=package_name,
@@ -15,12 +15,12 @@ setup(
     zip_safe=True,
     maintainer='cdenihan',
     maintainer_email='cdenihan@proton.me',
-    description='UMD UROC ROS2 package',
+    description='UMD UROC ROS2 Python Package',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'visualize = uroc.visualize:main'
+            'foxglove_3d_path_visualization = py_uroc.foxglove_3d_path_visualization:main'
         ],
     },
 )
